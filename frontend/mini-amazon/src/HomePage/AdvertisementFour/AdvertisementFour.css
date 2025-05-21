@@ -1,0 +1,21 @@
+.AdvertisementFour__body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 兩欄 */
+    gap: 10px;
+    padding: 0 15px;
+  }
+  
+  .AdvertisementFour__body img {
+    width: 100%;
+    max-width: 140px;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+
+  .AdvertisementFour__footer {
+    padding-top: 40px;
+    color: #007185;
+    cursor: pointer;
+  }
+  

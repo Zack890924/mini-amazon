@@ -1,0 +1,77 @@
+server:
+  address: 0.0.0.0
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:3000"
+              - "https://<your-ngrok-subdomain>.ngrok.io"
+              - "https://2d48-174-109-92-244.ngrok-free.app"
+              - "http://2d48-174-109-92-244.ngrok-free.app"
+
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+      routes:
+        - id: order-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/orders/**
+
+        - id: warehouse-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/warehouse/**
+
+        - id: warehouse-callback
+          uri: http://localhost:8082
+          predicates:
+            - Path=/internal/world/**
+
+        - id: world-connector-command
+          uri: http://localhost:8089
+          predicates:
+            - Path=/internal/command
+
+        - id: world-connector-context
+          uri: http://localhost:8089
+          predicates:
+            - Path=/internal/context
+
+        - id: ups-api
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/ups/**
+
+        - id: ups-callback
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/ups/**
+
+        - id: mock-ups
+          uri: http://localhost:8082
+          predicates:
+            - Path=/mock-ups/**
+
+        - id: world-context
+          uri: http://localhost:8089
+          predicates:
+            - Path=/internal/context
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
+    reactor.netty: INFO

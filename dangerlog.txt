@@ -1,0 +1,61 @@
+Before 4/11
+Situation: We discussed the Protocol Buffer (protobuf) message design with our interoperability group (IG) and finalized the communication formats for Amazon and UPS.
+
+4/12
+Situation: We determined the project architecture: backend using Spring Boot + Maven, frontend using React + Yarn.
+
+Potential Danger: Tight coupling between frontend and backend could make debugging and upgrades difficult.
+
+Resolution: Separated backend (REST APIs) and frontend (pure UI). Used API Gateway to manage service exposure.
+
+4/15
+Situation: Designed the World server response handler.
+
+Potential Danger:
+
+Failing to send ACKs immediately could cause the World server to resend messages.
+
+Duplicate message handling could corrupt server state.
+
+Resolution:
+
+Implemented an AckManager to automatically track and acknowledge all received seqnums.
+
+Used ConcurrentHashMap to ensure thread-safe handling of internal state.
+
+4/16
+Situation: Planned a microservices structure: order-service, warehouse-service, api-gateway, and world-connector.
+
+Potential Danger: Communication between microservices could become complicated and error-prone
+
+Resolution: We designed a clear communication pattern by introducing CallbackController endpoints on each service
+ and using RestTemplate clients combined with DTOs (Data Transfer Objects) for inter-service communication. 
+
+4/18
+Situation: Successfully completed end-to-end flow test (buy, pack, load).
+
+Potential Danger: Still need UPS for further testing
+
+
+4/21
+Situation: Built React frontend basic UI for users to place orders.
+
+
+4/22
+Situation: Developed UPS response mechanism.
+
+Potential Danger: Should be carefully follow the agreed spec
+
+
+4/23
+Situation: Refactored the frontend UI.
+
+Using UPS account to track the package
+
+4/25
+Situation: Encountered strict action name matching issues while integrating with UPS.
+
+Potential Danger: Incorrect action field names in JSON messages (e.g., typos) would cause UPS servers to reject the requests.
+
+Resolution: Standardized all action names in UPS-related communication. Added detailed request logs for easier debugging.
+
