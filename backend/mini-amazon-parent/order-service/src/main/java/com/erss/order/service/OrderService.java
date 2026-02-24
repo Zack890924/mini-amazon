@@ -6,6 +6,7 @@ import com.erss.order.dto.PurchaseRequestDTO;
 import com.erss.order.dto.PurchaseResponseDTO;
 import com.erss.order.entity.Order;
 import com.erss.order.repository.OrderRepository;
+import io.micrometer.core.instrument.MeterRegistry;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 public class OrderService {
     private final WarehouseClient warehouseClient;
     private final OrderRepository orderRepository;
+    private final MeterRegistry meterRegistry;
 
     public PurchaseResponseDTO placeOrder(@Valid PurchaseRequestDTO req) {
         PurchaseResponseDTO response = warehouseClient.purchase(req);
@@ -42,6 +44,12 @@ public class OrderService {
         order.setStatus("Processing");
         order.setUpsAccount(req.getUpsAccount());
         order.setOrderDate(new Date());
+
+        meterRegistry.counter("state.transition",
+                "entity_type", "order",
+                "from_state", "NEW",
+                "to_state", "Processing"
+        ).increment();
 
         orderRepository.save(order);
 

@@ -36,6 +36,7 @@ public class WarehouseService {
     private final WarehouseWorldFacade facade;
     private final UpsClient upsClient;
     private final TrackingInfoRepository trackingInfoRepository;
+    private final MetricsService metricsService;
 
     @Value("${warehouse.id}")
     private int warehouseId;
@@ -133,6 +134,7 @@ public class WarehouseService {
         if (needToPurchase){
 
             op.setStatus("PENDING");
+            metricsService.trackStateTransition("operation", null, "PENDING");
             packageOperationRepository.save(op);
             log.info("Create PURCHASE operation: packageId={}, status=PENDING", pkgId);
 
@@ -142,6 +144,7 @@ public class WarehouseService {
         } else {
 
             op.setStatus("COMPLETED");
+            metricsService.trackStateTransition("operation", null, "COMPLETED");
             packageOperationRepository.save(op);
             log.info("Create PURCHASE operation: packageId={}, status=COMPLETED", pkgId);
 

@@ -2,6 +2,7 @@ package com.erss.worldconnector.ack;
 import com.erss.common.proto.*;
 
 import com.erss.worldconnector.service.WorldConnectionService;
+import io.micrometer.core.instrument.MeterRegistry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,11 +39,17 @@ public class AckManager {
     private static final Logger log = LoggerFactory.getLogger(WorldConnectionService.class);
 
     private AckFactory ackFactory;
+    private MeterRegistry meterRegistry;
 
     @Autowired
     public void setAckEntryFactory(AckFactory factory){
 
         this.ackFactory = factory;
+    }
+
+    @Autowired
+    public void setMeterRegistry(MeterRegistry meterRegistry) {
+        this.meterRegistry = meterRegistry;
     }
 
     public void setCommandSender(Consumer<ACommands> commandSender){
@@ -117,6 +124,13 @@ public class AckManager {
 
                 log.debug("Received ack for seqnum: {}", ackSeqNum);
                 receivedAcks.add(ackSeqNum);
+
+                // Calculate and record ACK latency
+                if (meterRegistry != null) {
+                    long latencyMs = System.currentTimeMillis() - removed.sentTimestamp;
+                    meterRegistry.timer("external.ack.latency").record(latencyMs, TimeUnit.MILLISECONDS);
+                    log.debug("ACK latency for seqnum {}: {} ms", ackSeqNum, latencyMs);
+                }
             } else {
                 log.warn("Received ACK for unknown seqnum: {}", ackSeqNum);
             }

@@ -4,6 +4,8 @@ import com.erss.common.service.SeqNumManager;
 import com.erss.warehouse.dto.OrderItemDTO;
 import com.erss.common.proto.*;
 import com.erss.warehouse.repository.CommandHistoryRepository;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +23,7 @@ public class WarehouseWorldFacade {
     private final RestTemplate restTemplate;
     private final SeqNumManager seqNumManager;
     private final CommandHistoryRepository commandHistoryRepository;
+    private final MeterRegistry meterRegistry;
 
 
 
@@ -37,8 +40,10 @@ public class WarehouseWorldFacade {
 
         if(commandHistoryRepository.existsByPackageIdAndCommandType(pkgId, "BUY")){
             log.info("Buy command for package {} already sent, skipping duplicate", pkgId);
+            meterRegistry.counter("dedup.hit", "command_type", "BUY").increment();
             return;
         }
+        meterRegistry.counter("dedup.miss", "command_type", "BUY").increment();
 
         List<AProduct> things = items.stream().map(i ->
                 AProduct.newBuilder()
@@ -72,8 +77,10 @@ public class WarehouseWorldFacade {
 
         if(commandHistoryRepository.existsByPackageIdAndCommandType(packageId, "PACK")){
             log.info("Pack command for package {} already sent, skipping duplicate", packageId);
+            meterRegistry.counter("dedup.hit", "command_type", "PACK").increment();
             return;
         }
+        meterRegistry.counter("dedup.miss", "command_type", "PACK").increment();
 
         List<AProduct> things = items.stream()
                 .map(i -> AProduct.newBuilder()
@@ -107,8 +114,10 @@ public class WarehouseWorldFacade {
 
         if(commandHistoryRepository.existsByPackageIdAndTruckIdAndCommandType(packageId, truckId, "LOAD")){
             log.info("Load command for package {} to truck {} already sent, skipping duplicate", packageId, truckId);
+            meterRegistry.counter("dedup.hit", "command_type", "LOAD").increment();
             return;
         }
+        meterRegistry.counter("dedup.miss", "command_type", "LOAD").increment();
         long seqNum = seqNumManager.generateAndRegister("LOAD", packageId, truckId);
         APutOnTruck put = APutOnTruck.newBuilder()
                 .setWhnum(warehouseId)
