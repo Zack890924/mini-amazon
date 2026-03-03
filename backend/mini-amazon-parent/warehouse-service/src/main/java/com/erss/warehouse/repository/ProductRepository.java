@@ -1,0 +1,15 @@
+package com.erss.warehouse.repository;
+
+
+
+import com.erss.warehouse.entity.PackageOperation;
+import com.erss.warehouse.entity.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+import java.util.List;
+import java.util.Optional;
+
+public interface ProductRepository extends JpaRepository<Product, Long> {
+    Optional<Product> findByWorldProductId(Long worldProductId);
+}

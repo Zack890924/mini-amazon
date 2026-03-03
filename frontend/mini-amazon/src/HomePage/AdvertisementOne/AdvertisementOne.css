@@ -1,0 +1,26 @@
+.AdvertisementOne__main {
+    height: 380px;
+    width: 335px;
+    background: white;
+    margin: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .AdvertisementOne__header {
+    font-size: 21px;
+    line-height: 27px;
+    font-weight: bold;
+    padding: 15px;
+  }
+  
+  .AdvertisementOne__body {
+    padding-left: 15px;
+    padding-top: 10px;
+  }
+  
+  .AdvertisementOne__footer {
+    padding: 15px;
+    color: #007185;
+    cursor: pointer;
+  }
+  

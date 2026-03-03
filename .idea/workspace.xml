@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="66093218-5b19-40de-a75f-d2b40ec9bac5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/frontend/mini-amazon/react-library/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mini-amazon/react-library/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mini-amazon/react-library/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mini-amazon/react-library/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mini-amazon/react-library/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mini-amazon/react-library/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mini-amazon/react-library/src/App.test.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mini-amazon/react-library/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mini-amazon/react-library/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mini-amazon/react-library/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mini-amazon/react-library/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mini-amazon/react-library/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mini-amazon/react-library/src/reportWebVitals.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mini-amazon/react-library/src/setupTests.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mini-amazon/react-library/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mini-amazon/react-library/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mini-amazon/react-library/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mini-amazon/react-library/yarn.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/frontend/mini-amazon/react-library" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2vaZP3Grc0Wi7Qcpn1T8dOzmZ4q" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/yao-hsuanchang/Desktop/project"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="66093218-5b19-40de-a75f-d2b40ec9bac5" name="Changes" comment="" />
+      <created>1744385118548</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1744385118548</updated>
+    </task>
+    <servers />
+  </component>
+</project>

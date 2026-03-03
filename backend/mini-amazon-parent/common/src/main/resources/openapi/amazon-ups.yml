@@ -1,0 +1,57 @@
+openapi: 3.0.3
+info:
+  title: Amazon‑UPS Bridge API
+  version: 1.0.0
+servers: []
+paths:
+  /api/ups:
+    post:
+      summary: UPS→Amazon
+      operationId: upsCallback
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsMessage'
+      responses:
+        "200":
+          description: ok
+  /api/amazon:
+    post:
+      summary: Amazon→UPS
+      operationId: amazonCallback
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AmazonMessage'
+      responses:
+        "200":
+          description: ok
+components:
+  schemas:
+    Base:
+      type: object
+      required: [action, timestamp, message_id]
+      properties:
+        action:     { type: string }
+        timestamp:  { type: string, format: date-time }
+        message_id: { type: string, format: uuid }
+
+    AmazonMessage:
+      allOf:
+        - $ref: '#/components/schemas/Base'
+        - type: object
+          properties:
+            package_id:   { type: string }
+            warehouse_id: { type: integer }
+
+    UpsMessage:
+      allOf:
+        - $ref: '#/components/schemas/Base'
+        - type: object
+          properties:
+            tracking_number: { type: string }
+            truck_id:        { type: integer }

@@ -1,0 +1,176 @@
+/* src/Navbar.css */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    background-color: #131A22;
+    padding: 0 20px;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  .navbar__logo {
+    width: 150px;
+    height: 100px;
+    background-image: url('https://ik.imagekit.io/amazonbbb11/amazon-image/logo.png?updatedAt=1744058897457');
+    background-repeat: no-repeat;
+    background-position: 0px 27px;
+    background-size: 150px auto;
+    display: block;
+  }
+  
+  .navbar__left {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+  }
+  
+  .navbar__location {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 20px;
+  }
+  
+  .navbar__locationIcon {
+    font-size: 18px;
+    margin-right: 4px;
+  }
+  
+  .navbar__locationText {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  
+  
+  
+  
+  
+  .navbar__search {
+    display: flex;
+    flex: 1;
+    max-width: 600px;
+    margin: 0 20px;
+  }
+  
+  .navbar__searchDropdown {
+    padding: 6px;
+    border: none;
+    outline: none;
+    background-color: #ddd;
+  }
+  
+  .navbar__searchInput {
+    flex: 1;
+    padding: 6px;
+    border: none;
+    outline: none;
+  }
+  
+  .navbar__searchButton {
+    padding: 6px 10px;
+    background-color: #febd69;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .navbar__links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .navbar__link {
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .navbar__textSmall {
+    font-size: 12px;
+  }
+  
+  .navbar__textBold {
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .navbar__cart {
+    position: relative;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .navbar__cartCount {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: #f08804;
+    color: black;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .navbar__footer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 20px;
+    background-color: #232f3e;
+    color: white;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .navbar__footer_text {
+    color: #ffffff;          
+    text-decoration: none;     
+    padding: 0 10px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+  
+  .navbar__footer_text:hover {
+    color: #febd69;
+  }
+
+ 
+  /* 🔧 修正 Returns & Orders 的藍字問題 */
+.navbar__link {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar__link:hover {
+  color: #febd69;
+}
+
+/* 若內部有額外文字樣式（像是 textSmall / textBold）也統一處理 */
+.navbar__link .navbar__textSmall,
+.navbar__link .navbar__textBold {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar__link:hover .navbar__textSmall,
+.navbar__link:hover .navbar__textBold {
+  color: #febd69;
+}
+
+.navbar__cart {
+  position: relative;
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar__cart:hover {
+  color: #febd69;
+}
+
+
+  
+  
